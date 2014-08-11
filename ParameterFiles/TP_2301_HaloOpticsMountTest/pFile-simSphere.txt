@@ -1,0 +1,28 @@
+###### GSP Parameter File ######
+
+#parameterName and <value> need to be separated by one space
+#parameterName <value>
+
+USE_SYNCH_CAMS true
+USE_SPHERES true
+REDUCE_IMAGE_SIZE_TO_320X240 false
+
+CAM_INPUT_IMG_DIR /home/tweddle/Documents/SVN/vertigo/trunk/FlightSoftware/GogglesLinux_Software/Results/TP_1106_Capture/run_2013_01_26_00_38_51/images
+CAM_INPUT_START_IMG 10
+CAM_INPUT_FINAL_IMG -1
+
+
+FRAME_RATE 3
+EXPOSURE_TIME 20
+HW_GAIN	100
+
+VIDEO_STREAMING_ON true
+AUTOMATIC_IMAGE_STORAGE true
+UNRECTIFIED_IMAGE_STORAGE true
+
+TEST_END_TIME_SECONDS	-1
+
+SUBSAMPLE	true
+EQUALIZE	true
+MIN_DEPTH 0.1
+MAX_DEPTH 0.8

@@ -1,0 +1,40 @@
+cmake_minimum_required (VERSION 2.6)
+
+
+# use sse3 instruction set
+SET(CMAKE_CXX_FLAGS "-msse3")
+
+# Add Pleora includes
+add_definitions(-D_UNIX_)
+INCLUDE_DIRECTORIES(/opt/pleora/ebus_sdk/RHEL-6-x86_64/include  ${pleora_INCLUDE_DIRS})
+
+#Add pleora libs
+LINK_DIRECTORIES(/opt/pleora/ebus_sdk/RHEL-6-x86_64/lib)
+LINK_DIRECTORIES(/opt/pleora/ebus_sdk/RHEL-6-x86_64/lib/genicam/bin/Linux64_x64)
+set(PLEORA_LIB
+        PvBase
+        PvDevice
+        PvBuffer
+        PvGUIUtils
+        PvGUI
+        PvPersistence
+        PvGenICam
+        PvStreamRaw
+        PvStream
+        PvTransmitterRaw
+        PvVirtualDevice
+        EbNetworkLib
+        PtUtilsLib
+        PtConvertersLib
+        PvSerial
+        EbTransportLayerLib
+        GCBase_gcc40_v2_3
+        GenApi_gcc40_v2_3
+        log4cpp_gcc40_v2_3
+        Log_gcc40_v2_3
+        MathParser_gcc40_v2_3
+)
+
+add_executable(TP_2601_SaveOpticsOrfThermo main.cpp testproject.cpp)
+TARGET_LINK_LIBRARIES(TP_2601_SaveOpticsOrfThermo ${OpenCV_LIBS} ${PLEORA_LIB} "/usr/lib/libueye_api.so")
+

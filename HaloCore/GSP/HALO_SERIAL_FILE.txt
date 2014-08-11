@@ -1,0 +1,2 @@
+#Halo Serial File
+#store halo serial numbers in this file, one on each line, with no spaces

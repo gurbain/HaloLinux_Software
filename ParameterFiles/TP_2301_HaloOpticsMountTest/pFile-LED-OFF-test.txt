@@ -1,0 +1,24 @@
+###### GSP Parameter File ######
+
+#parameterName and <value> need to be separated by one space
+#parameterName <value>
+
+USE_CAMERAS true
+USE_SYNCH_CAMS true
+USE_SPHERES true
+REDUCE_IMAGE_SIZE_TO_320X240 false
+
+FRAME_RATE 3
+EXPOSURE_TIME 20
+HW_GAIN	100
+
+VIDEO_STREAMING_ON false
+AUTOMATIC_IMAGE_STORAGE true
+UNRECTIFIED_IMAGE_STORAGE true
+
+TEST_END_TIME_SECONDS	-1
+
+SUBSAMPLE	true
+EQUALIZE	true
+MIN_DEPTH 0.1
+MAX_DEPTH 0.8

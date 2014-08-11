@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/cmgRun.dir/cmgCOM.cpp.o CMakeFiles/cmgRun.dir/crc16.cpp.o CMakeFiles/cmgRun.dir/serialib.cpp.o CMakeFiles/cmgRun.dir/cmgReadWrite.cpp.o CMakeFiles/cmgRun.dir/main.cpp.o  -o cmgRun -rdynamic 

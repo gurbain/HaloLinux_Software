@@ -1,0 +1,57 @@
+###### GSP Parameter File ######
+
+#parameterName and <value> need to be separated by one space
+#parameterName <value>
+
+###########################
+######   Halo Flags   #####
+###########################
+USE_HALO false
+USE_SPHERES false
+
+HP1_POWER OFF
+HP2_POWER OFF
+HP3_POWER OFF
+HP4_POWER OFF
+HP5_POWER OFF
+HP6_POWER OFF
+#HPALL_POWER OFF
+
+VIDEO_STREAMING_ON true
+
+############################
+##   Optics Mount Flags   ##
+############################
+USE_SYNCH_CAMS true
+USE_OM_CAMS true
+REDUCE_IMAGE_SIZE_TO_320X240 false
+
+FRAME_RATE_OM 3
+EXPOSURE_TIME_OM 20
+HW_GAIN_OM 100
+
+AUTOMATIC_IMAGE_STORAGE_OM false
+UNRECTIFIED_IMAGE_STORAGE_OM false
+
+#OM_INPUT_IMG_DIR /home/tweddle/Documents/TS37Data/T5R5-images
+#OM_INPUT_START_IMG 10
+#OM_INPUT_FINAL_IMG -1
+
+############################
+#####     ORF Flags    #####
+############################
+ORF_AUTO_EXPOSURE true
+ORF_AMP_TRESH 20
+ORF_MOD_FREQ 21
+ORF_INTEGRATION_TIME 100
+
+ORF_IP_ADDR 192.168.1.42
+
+ORF_CALIB_FILENAME /opt/GogglesOptics/Calib_Params/defaultSet/ORF_calib.xml
+ORF_SAVE_DIR /home/gabs48/img
+
+############################
+##  Guest Scientist Flags ##
+############################
+
+#SUBSAMPLE 0.8
