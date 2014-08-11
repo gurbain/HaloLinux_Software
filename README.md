@@ -7,6 +7,7 @@ Installation:
 
 This version integrates the core for ORF and Thermocam. To use it on Halo computer, type in a shell:
 ```
+cd ~
 git clone https://github.com/Gabs48/HaloLinux_Software
 cd HaloLinux_Software
 mkdir build
@@ -17,9 +18,17 @@ make
 
 To launch the test program for ORF, thermocam and opticsmount, do:
 ```
-source /opt/pleora/ebus_sdk/RHEL-6-x86_64/bin/set_puregev_env
-
+cd ~
+mkdir bin
+cd bin
+echo source /opt/pleora/ebus_sdk/RHEL-6-x86_64/bin/set_puregev_env > test
+echo ./~/HaloLinux_Software/buil/bin/TP_2601_SaveOpticsOrfThermo ~/HaloLinux_Software/ pFile-nosphere.txt > test
+chmod +x test
+echo source ~/bin > ~/.bashrc
+source ~/.bashrc
 ```
+
+After that, you can launch the program (even after reboot) by simply typing *test* from everywhere in a shell.
 
 
 Known issues:
