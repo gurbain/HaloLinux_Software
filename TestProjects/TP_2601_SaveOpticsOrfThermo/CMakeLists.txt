@@ -36,7 +36,7 @@ if( ${ARCHITECTURE} STREQUAL "64Bit" )
 		MathParser_gcc40_v2_3
 	)
 else()
-	INCLUDE_DIRECTORIES(/opt/pleora/ebus_sdk/RHEL-i686/include  ${pleora_INCLUDE_DIRS})
+	INCLUDE_DIRECTORIES(/opt/pleora/ebus_sdk/RHEL-6-i686/include  ${pleora_INCLUDE_DIRS})
 	LINK_DIRECTORIES(/opt/pleora/ebus_sdk/RHEL-6-i686/lib)
 	LINK_DIRECTORIES(/opt/pleora/ebus_sdk/RHEL-6-i686/lib/genicam/bin/Linux32_i86)
 	set(	PLEORA_LIB
