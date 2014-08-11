@@ -40,4 +40,5 @@ Known issues:
 - The IP is badly configured. The thermocam IP must be set manually to 192.168.1.41, the computer IP must be set in manual mode to 192.168.1.1, the ORF takes automatically 192.168.1.42
 - The OpticsMount IDs in /opt/GogglesOptics/CAMERA_FILE are wrong
 - The Calibration parameters *extrinsics.yml*  *intrinsics.yml*  *ORF_calib.xml* must be placed by default in /opt/GogglesOptics/Calib_Params/defaultSet/
+- The parameters are set up badly
 
