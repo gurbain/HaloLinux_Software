@@ -463,7 +463,6 @@ int ORF::captureRectified(Mat& depthNewImageFrame, Mat& visualNewImageFrame, Mat
 			storage["Intrinsicparameters"]>>intrinsicMatrix;
 			storage["Distortioncoefficients"]>>distortionCoeffs;
 		} else {
-			DEBUG<<"d"<<endl;
 			INFO<<"Calibration file not found! Calibration needed!"<<endl;
 			intrinsicCalib();
 			retVal = storage.open(this->calib_filename, FileStorage::READ);

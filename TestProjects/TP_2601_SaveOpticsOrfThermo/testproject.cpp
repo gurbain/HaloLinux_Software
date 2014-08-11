@@ -47,7 +47,6 @@ void testproject::GSsetup()
 	stringstream ss;
 	ss<<this->save_dir<<"/timestampOpticsMount.txt";
 	tsfile.open(ss.str().c_str());
-	cout<<ss.str().c_str()<<endl;
 	ss.str("");
 	if (tsfile.is_open())
 		tsfile<<endl<<endl<<"######################### NEW SESSION #######################"<<endl<<endl;

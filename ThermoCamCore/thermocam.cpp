@@ -257,7 +257,7 @@ int Thermocam::captureAndSave()
 		}
 	}
 	if (imgNum==0)
-		INFO<<"Saving image files into folder "<<this->img_directory<<endl;
+		INFO<<"Saving Thermocam images into folder "<<this->img_directory<<endl;
 	tsfile<<"IMAGENUM\t"<<imgNum<<"\tPROCTIME\t"<<ts.getProcTime()<<"\tMEANTIME\t"<<ts.getMeanTime()<<"\tDIFF\t"<<ts.getMeanTime()-tslast<<endl;
 
 	imgNum++;
