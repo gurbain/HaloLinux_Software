@@ -21,14 +21,15 @@ To launch the test program for ORF, thermocam and opticsmount, do:
 cd ~
 mkdir bin
 cd bin
-echo source /opt/pleora/ebus_sdk/RHEL-6-x86_64/bin/set_puregev_env > test
-echo ./~/HaloLinux_Software/buil/bin/TP_2601_SaveOpticsOrfThermo ~/HaloLinux_Software/ pFile-nosphere.txt > test
+echo source /opt/pleora/ebus_sdk/RHEL-6-x86_64/bin/set_puregev_env >> test_Halo
+echo cd ~/HaloLinux_Software/build/bin/ >> test_Halo
+echo ./TP_2601_SaveOpticsOrfThermo ~/HaloLinux_Software pFile-nosphere.txt >> test_Halo
 chmod +x test
-echo source ~/bin > ~/.bashrc
+echo export PATH=$PATH:~/bin >> ~/.bashrc
 source ~/.bashrc
 ```
 
-After that, you can launch the program (even after reboot) by simply typing *test* from everywhere in a shell.
+After that, you can launch the program (even after reboot) by simply typing *test_Halo* from everywhere in a shell.
 
 
 Known issues:
