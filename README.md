@@ -16,15 +16,19 @@ cmake ..
 make
 ```
 
-To launch the test program for ORF, thermocam and opticsmount, do:
+To create a script to start the software, begin with:
 ```
 cd ~
 mkdir bin
 cd bin
-echo source /opt/pleora/ebus_sdk/RHEL-6-x86_64/bin/set_puregev_env >> test_Halo
+```
+Then create the script all in verifying your pleora version (for example it could be *.../ebus_sdk/RHEL-6-x86_64/...*):
+```
+echo source /opt/pleora/ebus_sdk/RHEL-6-i686/bin/set_puregev_env >> test_Halo
+OR echo source /opt/pleora/ebus_sdk/RHEL-6-i686/bin/set_puregev_env >> test_Halo
 echo cd ~/HaloLinux_Software/build/bin/ >> test_Halo
 echo ./TP_2601_SaveOpticsOrfThermo ~/HaloLinux_Software pFile-nosphere.txt >> test_Halo
-chmod +x test
+chmod +x test_Halo
 echo export PATH=$PATH:~/bin >> ~/.bashrc
 source ~/.bashrc
 ```
