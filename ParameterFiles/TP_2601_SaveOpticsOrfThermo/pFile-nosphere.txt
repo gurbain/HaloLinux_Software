@@ -58,5 +58,8 @@ THERMOCAM_SAVE_DIR ~/results
 ############################
 ##  Guest Scientist Flags ##
 ############################
+USE_OPTICSMOUNT false
+USE_ORF false
+USE_THERMOCAM true
 
 #SUBSAMPLE 0.8

@@ -31,6 +31,10 @@ class testproject : virtual public haloGSP {
 		// Initialisation success flags
 		bool isOrfInit;
 		bool isThermoInit;
+		bool isThermoOn;
+		bool isOrfOn;
+		bool isOpticsOn;
+		
 		
 		// IMU save parameters
 		//ofstream imu_log_file, forceTorque_log_file, posVel_log_file, inst_posVel_log_file;

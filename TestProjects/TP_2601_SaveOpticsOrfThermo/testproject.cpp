@@ -7,74 +7,85 @@ testproject::testproject ()
 	save_dir = "";
 	isOrfInit= false;
 	isThermoInit = false;
+	isOrfOn= false;
+	isThermoOn = false;
+	isOpticsOn = false;	
 }
 
 void testproject::GSinit()
 {
  	HIDS opticscam = 1;
- 	//opticsmount1 = new opticsmountGSP(this, opticscam);
+ 	opticsmount1 = new opticsmountGSP(this, opticscam);
 	orf1 = new orfGSP(this);
 	thermocam1 = new thermocamGSP(this);
 }
 
 void testproject::GSsetup()
 {
-	//opticsmount1->init();
-	int retVal = thermocam1->init();
-	if (retVal == 0)
-		isThermoInit = true;
-	retVal = orf1->init();
-	if (retVal == 0)
-		isOrfInit = true;
+	int retVal;
+	
+	if (isOpticsOn) {
+		opticsmount1->init();
+	}
+	if (isThermoOn) {
+		retVal = thermocam1->init();
+		if (retVal == 0)
+			isThermoInit = true;
+	}
+	if (isOrfOn) {
+		retVal = orf1->init();
+		if (retVal == 0)
+			isOrfInit = true;
+	}
 	
 	// Create a new timestamp file and dir
-	time_t rawtime;
-	struct tm * timeinfo;
-	char buffer1[100];
-	stringstream buffer2;
-	time (&rawtime);
-	timeinfo = localtime(&rawtime);
-	strftime(buffer1,100,"%d-%m-%Y-%I-%M", timeinfo);
-	buffer2<<save_dir<<"/"<<buffer1;
-	string dir = buffer2.str();
-	struct stat st;
-	if(stat(this->save_dir.c_str(),&st) != 0) {
-		INFO<<"Creation of the folder "<<dir<<endl;
-		mkdir(this->save_dir.c_str(), 0777);
-		mkdir(dir.c_str(), 0777);
+	if (isOpticsOn == true) {
+		time_t rawtime;
+		struct tm * timeinfo;
+		char buffer1[100];
+		stringstream buffer2;
+		time (&rawtime);
+		timeinfo = localtime(&rawtime);
+		strftime(buffer1,100,"%d-%m-%Y-%I-%M", timeinfo);
+		buffer2<<save_dir<<"/"<<buffer1;
+		string dir = buffer2.str();
+		struct stat st;
+		if(stat(this->save_dir.c_str(),&st) != 0) {
+			INFO<<"Creation of the folder "<<dir<<endl;
+			mkdir(this->save_dir.c_str(), 0777);
+			mkdir(dir.c_str(), 0777);
+		}
+		this->save_dir = dir;
+		stringstream ss;
+		ss<<this->save_dir<<"/timestampOpticsMount.txt";
+		tsfile.open(ss.str().c_str());
+		ss.str("");
+		if (tsfile.is_open())
+			tsfile<<endl<<endl<<"######################### NEW SESSION #######################"<<endl<<endl;
 	}
-	this->save_dir = dir;
-	stringstream ss;
-	ss<<this->save_dir<<"/timestampOpticsMount.txt";
-	tsfile.open(ss.str().c_str());
-	ss.str("");
-	if (tsfile.is_open())
-		tsfile<<endl<<endl<<"######################### NEW SESSION #######################"<<endl<<endl;
-	
-	if (isOrfInit)
-		orf1->captureAndRectify(orf1->depth, orf1->visual, orf1->confidency);
-	//opticsmount1->captureAndRectifyImages(opticsmount1->leftImage, opticsmount1->rightImage);
-	if (isThermoInit)
-		thermocam1->capture(thermocam1->irImg);
 }
 
 void testproject::GSrunMain()
 {
 	// Take Optics mount images
-	//ts.start();
-	//opticsmount1->captureAndRectifyImages(opticsmount1->leftImage, opticsmount1->rightImage);
-	//ts.stop();
+	if (isOpticsOn) {
+		ts.start();
+		opticsmount1->captureAndRectifyImages(opticsmount1->leftImage, opticsmount1->rightImage);
+		ts.stop();
+	}
 	
 	// Take Orf images
-	if (isOrfInit)
+	if (isOrfInit && isOrfOn)
 		orf1->captureAndSaveRectified();
 	
 	// Take Thermo images
-	if (isThermoInit)
+	if (isThermoInit && isThermoOn)
 		thermocam1->captureAndSave();
 	
 	// Save Optics mount images
-	//this->GSsaveOpticsMount(opticsmount1->leftImage, opticsmount1->rightImage);
+	if (isOpticsOn) {
+		this->GSsaveOpticsMount(opticsmount1->leftImage, opticsmount1->rightImage);
+	}
 	
 	// Sleep 1 second
 	usleep(800000);
@@ -136,11 +147,6 @@ void testproject::GSparseParameterFile(string line)
 	string foundString;
 	size_t found;
 	
-	// Use the parse function of ORF and opticsmounts
-	orf1->parseParameterFile(line, true);
-	//opticsmount1->parseParameterFile(line, false);
-	thermocam1->parseParameterFile(line, true);
-	
 	// Parse the Save dir name
 	searchString = "ORF_SAVE_DIR";
 	found = line.find(searchString);
@@ -150,18 +156,69 @@ void testproject::GSparseParameterFile(string line)
 	}
 	searchString.clear();
 	found = string::npos;
+	
+	// Use ORF
+	searchString = "USE_ORF";
+	found = line.find(searchString);
+	if (found != string::npos) {
+		foundString = line.substr( found+searchString.size()+1, string::npos );
+		if (foundString == "true")
+			this->isOrfOn = true;
+		if (foundString == "false")
+			this->isOrfOn = false;
+		cout << "USE_ORF " << foundString << endl;
+	}
+	searchString.clear();
+	found = string::npos;
+
+	// Use OpticsMount
+	searchString = "USE_OPTICSMOUNT";
+	found = line.find(searchString);
+	if (found != string::npos) {
+		foundString = line.substr( found+searchString.size()+1, string::npos );
+		if (foundString == "true")
+			this->isOpticsOn = true;
+		if (foundString == "false")
+			this->isOpticsOn = false;
+		cout << "USE_OPTICSMOUNT " << foundString << endl;
+	}
+	searchString.clear();
+	found = string::npos;
+	
+	// Use Thermocam
+	searchString = "USE_THERMOCAM";
+	found = line.find(searchString);
+	if (found != string::npos) {
+		foundString = line.substr( found+searchString.size()+1, string::npos );
+		if (foundString == "true")
+			this->isThermoOn = true;
+		if (foundString == "false")
+			this->isThermoOn = false;
+		cout << "USE_THERMOCAM " << foundString << endl;
+	}
+	searchString.clear();
+	found = string::npos;
+
+	
+	// Use the parse function of ORF and opticsmounts
+	orf1->parseParameterFile(line, true);
+	opticsmount1->parseParameterFile(line, false);
+	thermocam1->parseParameterFile(line, true);
 
 }
 
 void testproject::GScleanup() 
 {
-	if (isOrfInit)
+	if (isOrfInit && isOrfOn) {
 		orf1->shutdown();
-	//opticsmount1->shutdown();
-	if (isThermoInit)
+		delete orf1;
+	}
+	if (isOpticsOn) {
+		opticsmount1->shutdown();
+		delete opticsmount1;
+	}
+	if (isThermoInit && isThermoOn) {
 		thermocam1->shutdown();
-	
-	delete orf1;
-	//delete opticsmount1;
-	delete thermocam1;
+		delete thermocam1;
+	}
 }
