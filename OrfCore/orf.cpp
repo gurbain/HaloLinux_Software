@@ -108,9 +108,10 @@ int ORF::init(bool auto_exposure, int integration_time, int modulation_freq, int
 	
 	struct stat st;
 	if(stat(this->img_directory.c_str(),&st) != 0) {
-		INFO<<"Creation of the folder "<<this->img_directory<<endl;
 		mkdir(img_directory.c_str(), 0777);
+		INFO<<"Creation of the folder "<<img_directory<<endl;
 		mkdir(this->img_directory.c_str(), 0777);
+		INFO<<"Creation of the folder "<<this->img_directory<<endl;
 	}
 	stringstream ss;
 	ss<<this->img_directory<<"/timestampORF.txt";
