@@ -48,18 +48,18 @@ ORF_INTEGRATION_TIME 100
 ORF_IP_ADDR 192.168.1.42
 
 ORF_CALIB_FILENAME /opt/GogglesOptics/Calib_Params/defaultSet/ORF_calib.xml
-ORF_SAVE_DIR ~/results
+ORF_SAVE_DIR /home/goggles/results
 
 ############################
 ##### Thermocam Flags  #####
 ############################
-THERMOCAM_SAVE_DIR ~/results
+THERMOCAM_SAVE_DIR /home/goggles/results
 
 ############################
 ##  Guest Scientist Flags ##
 ############################
-USE_OPTICSMOUNT false
-USE_ORF false
+USE_OPTICSMOUNT true
+USE_ORF true
 USE_THERMOCAM true
 
 #SUBSAMPLE 0.8

@@ -9,7 +9,8 @@ testproject::testproject ()
 	isThermoInit = false;
 	isOrfOn= false;
 	isThermoOn = false;
-	isOpticsOn = false;	
+	isOpticsOn = false;
+	imgNum = 0;	
 }
 
 void testproject::GSinit()
@@ -23,6 +24,9 @@ void testproject::GSinit()
 void testproject::GSsetup()
 {
 	int retVal;
+	
+	// Why have I to do that????
+	sprintf(opticsmount1->calibParamSetName, "defaultSet");
 	
 	if (isOpticsOn) {
 		opticsmount1->init();
@@ -107,7 +111,7 @@ void testproject::GSsaveOpticsMount(cv::Mat& leftImg, cv::Mat& rightImg)
 		imwrite(filenamel, leftImg);
 		imwrite(filenamer, rightImg);
 	} catch (int ex) {
-		cout<<"Exception converting image to jpg format: "<<ex<<endl;
+		cout<<"Exception converting image to png format: "<<ex<<endl;
 		return;
 	}
 	
@@ -148,6 +152,11 @@ void testproject::GSparseParameterFile(string line)
 	string foundString;
 	size_t found;
 	
+	
+	// Use the parse function of ORF and opticsmounts
+	orf1->parseParameterFile(line, true);
+	opticsmount1->parseParameterFile(line, true);
+	thermocam1->parseParameterFile(line, true);
 	// Parse the Save dir name
 	searchString = "ORF_SAVE_DIR";
 	found = line.find(searchString);
