@@ -54,7 +54,7 @@ void testproject::GSsetup()
 		buffer2<<save_dir<<"/"<<buffer1;
 		string dir = buffer2.str();
 		struct stat st;
-		if(stat(this->save_dir.c_str(),&st) != 0) {
+		if(stat(dir.c_str(),&st) != 0) {
 			INFO<<"Creation of the folder "<<this->save_dir<<endl;
 			mkdir(this->save_dir.c_str(), 0777);
 			INFO<<"Creation of the folder "<<dir<<endl;			
