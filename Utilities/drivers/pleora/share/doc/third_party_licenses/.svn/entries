@@ -1,0 +1,104 @@
+10
+
+dir
+16809
+svn://svn.pleora.com/sw/puregev/branches/pv_3_1/working/Documents/Licenses
+svn://svn.pleora.com
+
+
+
+2013-12-10T17:13:54.290741Z
+16468
+builduser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6162eddd-99cf-4ee6-856d-c40d9a3b6af5
+
+xorg
+dir
+
+ExpatXMLParser
+dir
+
+libusb
+dir
+
+PCAP
+dir
+
+Qt
+dir
+
+OpenGL
+dir
+
+Log4Cxx
+dir
+
+xmlsoft
+dir
+
+FontConfig
+dir
+
+NOTICE.txt
+file
+
+
+
+
+2014-01-27T08:00:34.554299Z
+3694c295059abb24d53bdc3edffb8b56
+2013-12-10T17:13:54.290741Z
+16468
+builduser
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+644
+
+zlib
+dir
+
+GenICam
+dir
+
+DirectRenderingManager
+dir
+
+CURL
+dir
+
+FreeTypeProject
+dir
+

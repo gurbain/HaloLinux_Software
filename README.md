@@ -31,7 +31,8 @@ sudo mv libMesaSR.h defineSR.h /usr/include
 **Install PLEORA Thermocam Drivers**
 - If you are running a 32bits version of Ubuntu 10.04 with a x86 processor architecture, copy ~/HaloLinux_Software/Utilities/drivers/pleora into the right directory:
 ```
-cd ~/HaloLinux_Software/Utilities/drivers/mesa
+cd ~/HaloLinux_Software/Utilities/drivers/pleora
+sudo mkdir /opt/pleora/ebus_sdk/RHEL-6-i686/
 sudo mv -r * /opt/pleora/ebus_sdk/RHEL-6-i686/
 ```
 
@@ -94,9 +95,15 @@ To facilitate the ethernet communication between each device, we  will give ever
 
 - **Vertigo computer**: In the file /etc/network/interfaces verify those lines are added:
 ```
-a
+auto eth0
+iface eth0 inet static
+address 192.168.1.1
+netmask 255.255.255.0
 ```
-Then, you can 
+Then, you can restar the network with the command:
+```
+sudo /etc/init.d/networking restart
+```
 
 - **ORF sensor**: By default, the IP address it takes automatically the value 192.168.1.42. If you want to change it, you have to open a telnet communication with it (being on the network 192.168.1.*) and then change it. However, it doesn't seem to work, so we'll keep the automatic address to avoid any problem.
 

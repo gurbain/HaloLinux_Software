@@ -1,0 +1,79 @@
+################################################################################
+#
+# readme.1st
+# Pleora Technologies Inc.
+# Copyright (c) 2002-2014
+# for ebUniversalPro-i686.ko 4.1.7 build 3007
+#
+################################################################################
+
+How to load ebUniversalPro-i686.ko
+
+The following script is available to assist you to load the module:
+
+    bash load.sh [--help]
+        where
+            --help             Display this help
+
+This script will take the current version of the module and load it in the memory.
+It will also create all the expected device nodes and also configure the networl stack.
+
+If a user want to make the module automatically, it can call this script a linux load
+time.
+
+################################################################################
+
+How to unload ebUniversalPro-i686.ko
+
+The following script is available to assist you to unload the module:
+
+    bash unload.sh [--help]
+        where
+            --help             Display this help
+
+The script will unload the module from memory and cleanup the system.
+
+################################################################################
+
+How to build ebUniversalPro-i686.ko
+
+The eBUS Universal Pro module can be rebuild by customer to work on different
+kernel. It must also be rebuild after a kernel update. 
+
+The code is split into 2 main parts to allow an easy recompilation and distribution.
+
+The first part is the libebTransportLayer-i686 static library that contains the logic of
+the driver. This part is not refering to any files from the kernel and only depend
+on itself to be build.
+
+The second part is an abstraction layer that include all the dependencies on the 
+kernel header files. It can be subdivised into a bunch of wrappers, the main module
+structure and a netfilter hook.
+
+To build this module, you must first ensure that the kernel header files
+you want to build agains are installed on your computer. You can only compile the 
+32 bits module against the 32 bits linux kernel and a 64 bits module against a 64
+bits linux kernel.
+
+Compiling the module:
+    bash build.sh [--output=OUTPUT] [--kernel=KERNEL] [--help]
+		where 
+            --src=SRC_FOLDER is the location where the source code is locate
+			--output=OUTPUT is the location where the module folder
+				will be create by the script. This folder will contains all the
+				everything needed for the distribution of the module. 
+			--kernel=KERNEL point to the kernel header files. This optional argument
+				is only	required when cross-compiling for another kernel that 
+				is not the one actually in use by your computer
+				i.e. /lib/modules/2.6.18-92.el5/build
+			--help Display the help about the script build.sh
+
+By default, the build can be done when installed in the default location by running
+the command 
+    ./build.sh
+without parameters
+
+Once you have compile the module, the module folder is containing exactly the same
+file as the one distribute will any eBUS SDK package. 
+
+################################################################################
